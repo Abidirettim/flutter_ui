@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutterui/views/change_password.dart';
 import 'package:flutterui/views/color-pallette.dart';
 import 'package:flutterui/views/forget_password.dart';
-import 'package:flutterui/views/profile.dart';
 import 'package:flutterui/views/register.dart';
 
 class Login extends StatefulWidget {
@@ -14,8 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final ColorPallette colorPallette = ColorPallette();
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -40,14 +36,18 @@ class _LoginState extends State<Login> {
                   children: [
                     Center(
                         child: SvgPicture.asset(
-                      "assets/images/logoRgb.svg",
+                      true
+                          ? "assets/images/logoWhite.svg"
+                          : "assets/images/logoRgb.svg",
                       width: 250,
                     )),
                     customSizedBox(),
                     const TextField(
                       decoration: InputDecoration(
                           hintText: "E-mail Adresi",
-                          icon: Icon(Icons.email_outlined)),
+                          icon: Icon(
+                            Icons.email_outlined,
+                          )),
                     ),
                     customSizedBox(),
                     const TextField(
@@ -57,42 +57,49 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     customSizedBox(),
-                    TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Şifreni mi unuttun ?",
-                          style: TextStyle(
-                            color: Colors.blue,
-                          ),
-                        )),
+                    Theme(
+                      data:
+                          ThemeData(primaryColor: ColorPallette.buttonPrimary),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const ForgetPassword()));
+                          },
+                          child: const Text(
+                            "Şifreni mi unuttun ?",
+                          )),
+                    ),
                     customSizedBox(),
                     Container(
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: colorPallette.getPrimaryColor()),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const Profile()));
-                        },
+                        style: ElevatedButton.styleFrom(),
+                        onPressed: () {},
                         child: const Text("Giriş Yap",
                             style: TextStyle(fontSize: 17)),
                       ),
                     ),
                     customSizedBox(),
-                    const Divider(
-                      color: Colors.black,
-                    ),
+                    const Divider(),
                     Center(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Hesabınız yok mu ? Kayıt ol",
-                          style: TextStyle(color: Colors.blue),
+                      child: Theme(
+                        data: ThemeData(
+                            primaryColor: ColorPallette.buttonPrimary),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const Register()));
+                          },
+                          child: const Text(
+                            "Hesabınız yok mu ? Kayıt ol",
+                          ),
                         ),
                       ),
                     ),

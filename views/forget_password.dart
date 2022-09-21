@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutterui/views/color-pallette.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
@@ -47,15 +48,18 @@ class ForgetPassword extends StatelessWidget {
                       ),
                     ),
                     customSizedBox(),
-                    const Divider(
-                      color: Colors.black,
-                    ),
+                    const Divider(),
                     Center(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Şifreni hatırladın mı ? Giriş yap",
-                          style: TextStyle(color: Colors.blue),
+                      child: Theme(
+                        data: ThemeData(
+                            primaryColor: ColorPallette.buttonPrimary),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "Şifreni hatırladın mı ? Giriş yap",
+                          ),
                         ),
                       ),
                     ),

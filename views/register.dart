@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutterui/views/color-pallette.dart';
 
 class Register extends StatelessWidget {
   const Register({super.key});
@@ -67,19 +68,23 @@ class Register extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text("Kayıt Ol", style: TextStyle(fontSize: 17)),
+                      child: const Text("Kayıt Ol",
+                          style: TextStyle(fontSize: 17)),
                     ),
                   ),
                   customSizedBox(),
-                  const Divider(
-                    color: Colors.black,
-                  ),
+                  const Divider(),
                   Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Zaten bir hesabınız var mı ? Giriş yap",
-                        style: TextStyle(color: Colors.blue),
+                    child: Theme(
+                      data:
+                          ThemeData(primaryColor: ColorPallette.buttonPrimary),
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "Zaten bir hesabınız var mı ? Giriş yap",
+                        ),
                       ),
                     ),
                   ),

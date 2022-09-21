@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutterui/views/color-pallette.dart';
 
 class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
@@ -23,7 +24,7 @@ class ChangePassword extends StatelessWidget {
                 height: height * 0.25,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(children: [
                   const Text("Şifre Değiştir", style: TextStyle(fontSize: 40)),
                   customSizedBox(),
@@ -56,15 +57,16 @@ class ChangePassword extends StatelessWidget {
                     ),
                   ),
                   customSizedBox(),
-                  const Divider(
-                    color: Colors.black,
-                  ),
+                  const Divider(),
                   Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Vaz mı geçtin ? Profil",
-                        style: TextStyle(color: Colors.blue),
+                    child: Theme(
+                      data:
+                          ThemeData(primaryColor: ColorPallette.buttonPrimary),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Vaz mı geçtin ? Profil",
+                        ),
                       ),
                     ),
                   ),
